@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter,Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { PostService } from 'src/app/posts.service';
@@ -10,12 +10,13 @@ import { PostService } from 'src/app/posts.service';
 })
 export class CreatePostComponent implements OnInit {
 
-  constructor(public PostService:PostService) { }
-  onAddPost(form:NgForm) {
-    if (form.invalid){
+  constructor(public PostService: PostService) { }
+  onAddPost(form: NgForm) {
+    if (form.invalid) {
       return;
     }
-    this.PostService.addPosts( form.value.title,  form.value.content)
+    this.PostService.addPosts(form.value.title, form.value.content)
+    form.resetForm();
   }
 
 
