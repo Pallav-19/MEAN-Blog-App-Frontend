@@ -9,6 +9,5 @@
       <button mat-button color="warn">DELETE</button>
     </mat-action-row>
   </mat-expansion-panel>
-  <mat-divider></mat-divider>
 </mat-accordion>
-<p *ngIf="posts.length < 0">Not enough posts</p>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0">No posts added yet!</p>
