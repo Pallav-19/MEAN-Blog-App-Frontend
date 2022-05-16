@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept,Authorization"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -36,8 +36,14 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
-  post.save();
-  console.log(post);
+  post
+    .save()
+    .then((post) => {
+      console.log(`The Post ${post} was saved`);
+    })
+    .catch((err) => {
+      console.log(`An Error ${err} occured.`);
+    });
   res.status(201).json({
     message: "Post added successfully",
   });
@@ -52,4 +58,17 @@ app.get("/api/posts", (req, res, next) => {
   });
 });
 
+app.delete("/api/posts/:id", (req, res) => {
+  const deleteId = req.params.id;
+  Post.deleteOne({ _id: deleteId })
+    .then((result) => {
+      console.log(result);
+      res.status(200).json({
+        message: `Post Deleted with ID ${deleteId}`,
+      });
+    })
+    .catch((err) => {
+      console.log("An error " + err + " occured");
+    });
+});
 module.exports = app;
