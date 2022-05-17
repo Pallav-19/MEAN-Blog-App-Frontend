@@ -40,13 +40,14 @@ app.post("/api/posts", (req, res, next) => {
     .save()
     .then((post) => {
       console.log(`The Post ${post} was saved`);
+      res.status(200).json({
+        message: `The Post ${post} was saved`,
+        resultId: post._id,
+      });
     })
     .catch((err) => {
       console.log(`An Error ${err} occured.`);
     });
-  res.status(201).json({
-    message: "Post added successfully",
-  });
 });
 
 app.get("/api/posts", (req, res, next) => {
@@ -69,6 +70,20 @@ app.delete("/api/posts/:id", (req, res) => {
     })
     .catch((err) => {
       console.log("An error " + err + " occured");
+    });
+});
+app.patch("/api/posts/:id", (req, res) => {
+  const id = req.params.id;
+  Post.findOneAndUpdate(
+    { _id: id },
+    { title: req.body.title, content: req.body.content }
+  )
+    .then((responseData) => {
+      res.json({ message: "post updated successfully" });
+      console.log(responseData);
+    })
+    .catch((err) => {
+      console.log(`an error ${err} occured`);
     });
 });
 module.exports = app;
