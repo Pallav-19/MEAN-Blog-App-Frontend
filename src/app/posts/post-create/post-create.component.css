@@ -9,3 +9,6 @@ mat-spinner {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+input[type="file"]{
+  visibility: hidden;
+}
