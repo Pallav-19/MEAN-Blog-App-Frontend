@@ -13,8 +13,9 @@
         mat-stroked-button
       >
         Upload Image</button
-      ><input #filePicker type="file" />
+      ><input #filePicker type="file" (change)="onImagePicked($event)" />
     </div>
+    <div *ngIf="imgPreview !== '' && imgPreview && form.get('image').valid" class="imgPreview"><img src={{imgPreview}} alt=""></div>
     <mat-form-field>
       <textarea formControlName="content" matInput rows="4" placeholder="Post Content"></textarea>
       <mat-error *ngIf="form.get('content')?.invalid">Please enter a post title.</mat-error>
