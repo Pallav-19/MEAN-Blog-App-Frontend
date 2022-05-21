@@ -28,3 +28,7 @@ mat-expansion-panel-header
   letter-spacing: 2px;
 
 }
+mat-paginator
+{
+  margin-top: 2rem;
+}
