@@ -6,29 +6,28 @@
 .info-text {
   text-align: center;
 }
-mat-spinner
-{
-  margin:auto;
+mat-spinner {
+  margin: auto;
 }
-.post-img img{
+.post-img img {
   width: 100%;
   margin: auto;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-
 }
-.post-img
-{
- width: 100%;
- text-align: center;
+.post-img {
+  width: 100%;
+  text-align: center;
 }
-mat-expansion-panel-header
-{
+mat-expansion-panel-header {
   font-size: 1rem;
   font-weight: 900;
   letter-spacing: 2px;
-
 }
-mat-paginator
-{
+mat-paginator {
   margin-top: 2rem;
+}
+.post-content {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-top: 1rem;
 }

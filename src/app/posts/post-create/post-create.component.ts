@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Post } from "../post.model";
-import {mimeType} from "../post-create/mime-type.validator"
+import { mimeType } from "../post-create/mime-type.validator"
 
 import { PostsService } from "../posts.service";
 
@@ -41,8 +41,8 @@ export class PostCreateComponent implements OnInit {
         this.isLoading = true;
         this.postsService.getPost(this.postId).subscribe((responseData) => {
           this.isLoading = false;
-          this.post = { id: responseData._id, title: responseData.title, content: responseData.content,image:responseData.image }
-          this.form.setValue({ 'title': this.post.title, 'content': this.post.content,'image':this.post.image })
+          this.post = { id: responseData._id, title: responseData.title, content: responseData.content, image: responseData.image }
+          this.form.setValue({ 'title': this.post.title, 'content': this.post.content, 'image': this.post.image })
         })
 
       } else {
@@ -56,11 +56,9 @@ export class PostCreateComponent implements OnInit {
     const file: any = (event.target as HTMLInputElement).files[0]
     this.form.patchValue({ image: file });
     this.form.get('image')?.updateValueAndValidity();
-    console.log(file)
     const reader = new FileReader();
     reader.onload = () => {
       this.imgPreview = reader.result;
-      console.log(this.imgPreview)
     }
     reader.readAsDataURL(file)
   }
@@ -70,10 +68,10 @@ export class PostCreateComponent implements OnInit {
     }
     this.isLoading = true;
     if (this.mode === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content,this.form.value.image);
+      this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
       this.form.reset();
     } else if (this.mode === 'edit') {
-      this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.content,this.form.value.image)
+      this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.content, this.form.value.image)
       this.form.reset();
     }
 
