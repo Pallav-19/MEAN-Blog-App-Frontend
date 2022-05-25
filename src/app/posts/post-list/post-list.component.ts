@@ -11,15 +11,17 @@ import { userService } from "src/app/auth/user.service";
   styleUrls: ["./post-list.component.css"]
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  posts: Post[] = [];
+  posts: any[] = [];
   private postsSub: Subscription = new Subscription;
   public authStatusSubscription = new Subscription;
-  public isUserAuthorised:boolean =false;
+  public isUserAuthorised: boolean = false;
   isLoading = false;
   totalPosts = 0;
   postPerPage = 2;
   currentPage: number = 1;
   pageSizeOptions = [1, 2, 5, 10]
+  isUserAuthenticated: boolean;
+  authListenerSubs: Subscription;
   constructor(public postsService: PostsService, private userService: userService) { }
 
   ngOnInit() {
@@ -31,10 +33,15 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.posts = postData.posts;
         this.totalPosts = postData.postCount;
       });
-      this.isUserAuthorised = this.userService.getIsAuth()
-      this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe((authStatus)=>{
-            this.isUserAuthorised = authStatus
-      })
+    this.isUserAuthorised = this.userService.getIsAuth()
+    this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe((authStatus) => {
+      this.isUserAuthorised = authStatus
+    })
+    this.isUserAuthenticated = this.userService.getIsAuth();
+    this.authListenerSubs = this.userService.getAuthStatusListener().subscribe((isAuthenticated) => {
+      this.isUserAuthenticated = isAuthenticated;
+    })
+
   }
   onDelete(postId: String) {
     this.isLoading = true
@@ -54,5 +61,8 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsService.getPosts(this.postPerPage, this.currentPage);
 
 
+  }
+  userID() {
+    return localStorage.getItem("userId")
   }
 }

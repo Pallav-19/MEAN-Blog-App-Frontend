@@ -7,11 +7,14 @@ import { userService } from './auth/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  authListenerSubs: any;
+  isUserAuthenticated: boolean =false;
   constructor(private userService: userService) {
     this.userService.autoAuth()
 
   }
   ngOnInit(): void {
+
 
   }
 

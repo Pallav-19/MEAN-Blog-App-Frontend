@@ -13,3 +13,7 @@ button
 {
   margin-top: 2rem;
 }
+mat-spinner
+{
+  margin:auto;
+}

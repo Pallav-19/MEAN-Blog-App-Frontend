@@ -21,12 +21,14 @@ export class PostsService {
         "http://localhost:3300/api/posts" + queryParams
       ).pipe(map((postData) => {
         return {
-          posts: postData.posts.map((post: { title: any; content: any; _id: any; image: any }) => {
+          posts: postData.posts.map((post: { title: any; content: any; _id: any; image: any; author: any; authorName: any }) => {
             return {
               title: post.title,
               content: post.content,
               id: post._id,
-              image: post.image
+              image: post.image,
+              author: post.author,
+              authorName: post.authorName
             }
           }),
           postCount: postData.postCount
@@ -41,7 +43,9 @@ export class PostsService {
         this.postsUpdated.next({ posts: [...this.posts], postCount: transformedPost.postCount });
       });
   }
-
+  getAuthorName() {
+    this.http.get("http://localhost:3300/api/users/getAuthorName")
+  }
   getPostUpdateListener() {
     return this.postsUpdated.asObservable();
   }

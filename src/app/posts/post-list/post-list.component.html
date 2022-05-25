@@ -4,12 +4,17 @@
     <mat-expansion-panel-header>
       {{ post.title }}
     </mat-expansion-panel-header>
+    <h5 class="author">
+      <em
+        >Posted by - <strong> {{ post.authorName }}</strong></em
+      >
+    </h5>
     <div class="post-img"><img [src]="post.image" alt="" /></div>
     <p class="post-content">{{ post.content }}</p>
-    <mat-action-row *ngIf="isUserAuthorised">
-      <a [routerLink]="['/edit', post.id]" mat-button color="primary">EDIT</a>
+    <mat-action-row *ngIf="isUserAuthorised && post.author === userID()">
+      <a [routerLink]="['/edit', post.id]" mat-button color="primary"> <mat-icon>edit</mat-icon> Edit </a>
       <button (click)="onDelete(post.id)" mat-button color="warn">
-        DELETE
+        <mat-icon>delete</mat-icon> Delete
       </button>
     </mat-action-row>
   </mat-expansion-panel>
@@ -21,6 +26,19 @@
   [pageSizeOptions]="pageSizeOptions"
   (page)="onChangedPage($event)"
 ></mat-paginator>
-<p class="info-text mat-body-1" *ngIf="posts.length <= 0!; isLoading">
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">
   No posts added yet!
 </p>
+<button
+  type="button"
+  class="createButton"
+  color="accent"
+  routerLinkActive="mat-accent"
+  *ngIf="isUserAuthenticated"
+  mat-fab-button
+  routerLink="/create"
+  mat-fab
+  routerLinkActive="mat-accent"
+>
+  <mat-icon>edit</mat-icon>
+</button>

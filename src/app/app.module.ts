@@ -9,7 +9,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatPaginatorModule } from "@angular/material/paginator"
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 
@@ -46,6 +48,7 @@ import { authInterceptor } from "./auth/auth.interceptor";
     HttpClientModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatIconModule,
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:authInterceptor,multi:true}],
   bootstrap: [AppComponent]

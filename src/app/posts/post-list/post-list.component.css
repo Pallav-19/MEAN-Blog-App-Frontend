@@ -31,3 +31,13 @@ mat-paginator {
   font-weight: 300;
   margin-top: 1rem;
 }
+.author{
+  margin: auto;
+  margin-right: 3rem;
+}
+.createButton{
+  position: fixed;
+  z-index: 99;
+  bottom: 2rem;
+  right: 2rem;
+}

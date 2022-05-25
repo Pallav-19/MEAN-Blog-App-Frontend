@@ -19,7 +19,7 @@ export class SigninComponent implements OnInit {
     if (form.invalid) {
       return
     }
-    this.userService.signup(form.value.email, form.value.password)
+    this.userService.signup(form.value.email, form.value.password,form.value.username)
 
     form.resetForm();
 
