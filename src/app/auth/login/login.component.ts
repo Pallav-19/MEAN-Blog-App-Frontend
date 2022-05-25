@@ -11,14 +11,14 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false
   constructor(public userService: userService) { }
   onLogin(form: NgForm) {
+    this.isLoading = true
     if (form.invalid) {
       return;
     }
     console.log(form.value)
-    this.isLoading = true
     this.userService.login(form.value.email, form.value.password)
     form.resetForm()
-    this.isLoading =false
+
 
   }
 

@@ -5,9 +5,10 @@ import { userService } from "./user.service";
 export class authInterceptor implements HttpInterceptor {
   constructor(private userService: userService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+    
     const authToken = this.userService.getToken();
     console.log("auth token " + authToken)
-    
+
     const authRequest = req.clone({
       headers: req.headers.set('Authorization', "Bearer " + authToken)
     })

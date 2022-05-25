@@ -1,10 +1,10 @@
 <mat-card>
-  <mat-spinner *ngIf=""> </mat-spinner>
-  <form  (submit)="onLogin(loginData)" #loginData="ngForm" action="">
+  <mat-spinner *ngIf="isLoading"> </mat-spinner>
+  <form (submit)="onLogin(loginData)" #loginData="ngForm" action="">
     <div>
       <mat-form-field>
         <input
-        email=""
+          email=""
           ngModel
           name="email"
           #emailInput="ngModel"
@@ -36,7 +36,10 @@
       </mat-form-field>
     </div>
     <div>
-      <button type="submit" color="accent" mat-raised-button>login</button>
+      <button *ngIf="!isLoading" type="submit" color="accent" mat-raised-button>
+        login
+      </button>
+      
     </div>
   </form>
 </mat-card>

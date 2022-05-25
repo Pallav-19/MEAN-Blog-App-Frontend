@@ -21,9 +21,6 @@ export class PostCreateComponent implements OnInit {
   post: Post;
   form: FormGroup;
   imgPreview: any;
-
-
-
   constructor(public postsService: PostsService, public route: ActivatedRoute) { }
   ngOnInit(): void {
     this.form = new FormGroup({

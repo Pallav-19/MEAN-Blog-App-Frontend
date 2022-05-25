@@ -8,16 +8,19 @@ import { userService } from '../user.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+  public isLoading: boolean = false
 
   constructor(public userService: userService) { }
 
   ngOnInit(): void {
   }
   onSignup(form: NgForm) {
+    this.isLoading = true
     if (form.invalid) {
       return
     }
     this.userService.signup(form.value.email, form.value.password)
+
     form.resetForm();
 
   }
