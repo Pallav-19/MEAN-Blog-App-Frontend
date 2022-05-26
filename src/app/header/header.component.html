@@ -2,19 +2,19 @@
   <span><a routerLink="/">All Posts</a></span>
   <span class="spacer"></span>
   <ul>
-        <li *ngIf="!isUserAuthenticated">
+        <li class="login" *ngIf="!isUserAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent"
-        >Login</a
+        >Login<mat-icon>login</mat-icon></a
       >
     </li>
     <li>
-      <a *ngIf="!isUserAuthenticated" mat-button routerLink="/signin" routerLinkActive="mat-accent"
-        >Sign-up</a
+      <a *ngIf="!isUserAuthenticated" color="accent" class="signup" mat-raised-button routerLink="/signin"
+        >New User <mat-icon>add</mat-icon></a
       >
     </li>
         <li>
       <a *ngIf="isUserAuthenticated" color="accent" mat-raised-button (click)="onLogout()"  routerLinkActive="mat-accent"
-        >Log out</a
+        ><mat-icon>logout</mat-icon>Log out</a
       >
     </li>
 

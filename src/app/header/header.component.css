@@ -13,3 +13,9 @@ a {
 ul> li{
   display: inline-block;
 }
+.login
+{
+  background-color: rgba(0, 0, 0, 0.157);
+  margin-right: 0.6rem;
+  border-radius: 5px;
+}

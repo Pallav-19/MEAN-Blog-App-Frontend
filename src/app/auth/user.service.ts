@@ -20,6 +20,12 @@ export class userService {
       username: username,
     }
     this.http.post("http://localhost:3300/api/users/signup", user).subscribe(gotData => {
+      this.router.navigate(["/login"])
+
+    }, error => {
+      console.log(error)
+      this.router.navigate(["/signin"])
+      this.authStatusListener.next(false)
     })
 
   }
@@ -46,6 +52,11 @@ export class userService {
         }
 
 
+      },err=>{
+        console.log(err)
+        this.isUserAuthenticated =false
+        this.authStatusListener.next(false)
+        this.router.navigate(["/login"])
       });
   }
   logout() {

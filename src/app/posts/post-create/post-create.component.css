@@ -19,3 +19,7 @@ input[type="file"] {
 .imgPreview img {
   height: 100%;
 }
+small{
+  margin-left: 0.5rem;
+  color: rgb(255, 0, 140);
+}
