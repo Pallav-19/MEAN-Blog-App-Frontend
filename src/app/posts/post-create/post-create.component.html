@@ -20,7 +20,7 @@
         mat-stroked-button
       >
         Upload Image</button
-      ><small>*required</small><input #filePicker type="file" (change)="onImagePicked($event)" />
+      ><small>*required(.png or .jpg only)</small><input #filePicker type="file" (change)="onImagePicked($event)" />
     </div>
     <div
       *ngIf="imgPreview !== '' && imgPreview && form.get('image')?.valid"
