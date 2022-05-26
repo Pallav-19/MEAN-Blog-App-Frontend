@@ -1,15 +1,15 @@
 <mat-toolbar color="primary">
-  <span><a routerLink="/">All Posts</a></span>
+  <span><a routerLink="/"> <mat-icon>whatshot</mat-icon> Feed</a></span>
   <span class="spacer"></span>
   <ul>
         <li class="login" *ngIf="!isUserAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent"
-        >Login<mat-icon>login</mat-icon></a
+        ><mat-icon>login</mat-icon>Login</a
       >
     </li>
     <li>
       <a *ngIf="!isUserAuthenticated" color="accent" class="signup" mat-raised-button routerLink="/signin"
-        >New User <mat-icon>add</mat-icon></a
+        > <mat-icon>person_add</mat-icon>New User</a
       >
     </li>
         <li>

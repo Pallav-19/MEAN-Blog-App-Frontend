@@ -4,6 +4,11 @@ import { user } from "./user.model"
 import { Subject } from "rxjs";
 import { PostsService } from "../posts/posts.service";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
+
+
+const BACKEND_ROOT_URL_USERS: any = environment.apiUrl + "/users/"
+
 @Injectable({ providedIn: 'root' })
 export class userService {
   private token: string | null;
@@ -19,7 +24,7 @@ export class userService {
       password: password,
       username: username,
     }
-    this.http.post("http://localhost:3300/api/users/signup", user).subscribe(gotData => {
+    this.http.post(BACKEND_ROOT_URL_USERS + "/signup", user).subscribe(gotData => {
       this.router.navigate(["/login"])
 
     }, error => {
@@ -34,7 +39,7 @@ export class userService {
       email: email,
       password: password,
     }
-    this.http.post<{ message: string, token: string, expiresIn: number, userId: string }>("http://localhost:3300/api/users/login", user)
+    this.http.post<{ message: string, token: string, expiresIn: number, userId: string }>(BACKEND_ROOT_URL_USERS + "/login", user)
       .subscribe((responseData) => {
         this.token = responseData.token
         if (this.token) {
@@ -52,9 +57,9 @@ export class userService {
         }
 
 
-      },err=>{
+      }, err => {
         console.log(err)
-        this.isUserAuthenticated =false
+        this.isUserAuthenticated = false
         this.authStatusListener.next(false)
         this.router.navigate(["/login"])
       });

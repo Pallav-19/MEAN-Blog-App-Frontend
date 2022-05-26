@@ -3,8 +3,12 @@ import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators"
 import { Router } from "@angular/router"
-
 import { Post } from "./post.model";
+import { environment } from "src/environments/environment";
+
+const BACKEND_ROOT_URL_POSTS: any = environment.apiUrl + "/posts/"
+const BACKEND_ROOT_URL_USERS: any = environment.apiUrl + "/users"
+
 
 @Injectable({ providedIn: "root" })
 export class PostsService {
@@ -18,7 +22,7 @@ export class PostsService {
     const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`
     this.http
       .get<{ message: string; posts: any, postCount: number }>(
-        "http://localhost:3300/api/posts" + queryParams
+        BACKEND_ROOT_URL_POSTS + queryParams
       ).pipe(map((postData) => {
         return {
           posts: postData.posts.map((post: { title: any; content: any; _id: any; image: any; author: any; authorName: any }) => {
@@ -44,14 +48,14 @@ export class PostsService {
       });
   }
   getAuthorName() {
-    this.http.get("http://localhost:3300/api/users/getAuthorName")
+    this.http.get(BACKEND_ROOT_URL_USERS + "/getAuthorName")
   }
   getPostUpdateListener() {
     return this.postsUpdated.asObservable();
   }
   getPost(id: string) {
 
-    return this.http.get<{ _id: string, title: string, content: string, image: string }>('http://localhost:3300/api/posts/' + id)
+    return this.http.get<{ _id: string, title: string, content: string, image: string }>(BACKEND_ROOT_URL_POSTS + id)
 
   }
 
@@ -62,14 +66,14 @@ export class PostsService {
     postData.append("image", image, title);
 
     this.http
-      .post<{ message: string, createdPost: Post }>("http://localhost:3300/api/posts",
+      .post<{ message: string, createdPost: Post }>(BACKEND_ROOT_URL_POSTS,
         postData)
       .subscribe(responseData => {
         this.router.navigate(["/"]);
       });
   }
   deletePost(postId: String) {
-    return this.http.delete("http://localhost:3300/api/posts/" + postId)
+    return this.http.delete(BACKEND_ROOT_URL_POSTS + postId)
 
   }
   updatePost(id: string, title: string, content: string, image: File | string) {
@@ -85,7 +89,7 @@ export class PostsService {
       postData = { id: id, title: title, content: content, image: image }
 
     }
-    this.http.patch<{ message: String }>("http://localhost:3300/api/posts/" + id, postData).subscribe(responseData => {
+    this.http.patch<{ message: String }>(BACKEND_ROOT_URL_POSTS + id, postData).subscribe(responseData => {
       console.log(responseData.message);
       const updatedPosts = [...this.posts]
       const oldPostIndex = updatedPosts.findIndex(p => (p.id === id));
