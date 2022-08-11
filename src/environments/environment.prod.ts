@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "http://techlog-env.eba-fkph9ej4.ap-south-1.elasticbeanstalk.com/api"
+  apiUrl: "https://techlog-cflvbld3t-pallav-19.vercel.app/api"
 };
