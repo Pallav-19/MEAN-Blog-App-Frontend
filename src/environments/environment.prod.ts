@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://techlog-cflvbld3t-pallav-19.vercel.app/api"
+  apiUrl: "https://tech-log-api.vercel.app/api"
 };
