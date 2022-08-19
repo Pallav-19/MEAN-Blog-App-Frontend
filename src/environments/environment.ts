@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://tech-log-api.vercel.app//api"
+  apiUrl: "https://techlog2.herokuapp.com/"
 };
 
 /*

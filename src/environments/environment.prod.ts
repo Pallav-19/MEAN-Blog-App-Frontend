@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://tech-log-api.vercel.app/api"
+  apiUrl: "https://techlog2.herokuapp.com/"
 };
